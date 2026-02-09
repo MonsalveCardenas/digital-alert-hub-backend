@@ -31,7 +31,9 @@ router.get(
       { expiresIn: "7d" }
     );
 
-    res.redirect(`http://localhost:5173/auth/callback?token=${token}`);
+    // Usa variable de entorno para frontend URL, o localhost para desarrollo
+    const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
+    res.redirect(`${frontendUrl}/auth/callback?token=${token}`);
   }
 );
 
