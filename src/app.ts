@@ -16,16 +16,10 @@ import "./config/googleStrategy"; // <-- INICIALIZA PASSPORT GOOGLE
 const app: Application = express();
 
 // Configurar CORS para desarrollo y producción
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:5173", // Vite default
-  process.env.FRONTEND_URL || "http://localhost:3000",
-];
-
 app.use(
   cors({
-    origin: allowedOrigins,
-    credentials: true,
+    origin: "*", 
+    credentials: false,
   })
 );
 
