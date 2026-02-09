@@ -31,9 +31,8 @@ export const connectDB = async (): Promise<void> => {
     console.log("Conexión a PostgreSQL establecida correctamente.");
 
     // Sincroniza los modelos con la base de datos
-    // En desarrollo: alter: true (ajusta estructura)
-    // En producción: alter: false (solo crea tablas faltantes, no modifica)
-    await sequelize.sync({ alter: process.env.NODE_ENV === "development" });
+    // force: true en primera ejecución (borra y crea todo), luego cambiar a false
+    await sequelize.sync({ force: process.env.FORCE_SYNC === "true", alter: false });
     console.log("Modelos sincronizados con la base de datos.");
   } catch (error) {
     console.error("Error al conectar con PostgreSQL:", error); // Cierra el proceso de Node.js con código 1 (error)
