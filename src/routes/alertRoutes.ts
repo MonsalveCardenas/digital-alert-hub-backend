@@ -9,3 +9,4 @@ router.post("/", verifyToken, createAlerta);
 router.get("/", verifyToken, listAlerta);
 
 export default router;
+
